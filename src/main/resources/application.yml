@@ -1,0 +1,38 @@
+micronaut:
+    application:
+        name: citapp
+
+    http:
+        services:
+            citopinions:
+                urls:
+                    - https://www.cit.uscourts.gov
+                
+    server:
+        port: 8085
+        cors:
+            enabled: true
+            configurations:
+                web:
+                    allowedOrigins:
+                        - http://localhost:3000
+        netty:
+            logLevel: debug
+
+
+datasources:
+    default:
+        url: jdbc:oracle:thin:@[ip-address]:1521/XE
+        username: OPINIONS
+        password: [password]
+        driverClassName: oracle.jdbc.OracleDriver
+
+jpa:
+    default:
+        packages-to-scan:
+            - 'com.rosskerr.citapp.models'
+        properties:
+            hibernate:
+                hbm2ddl:
+                    auto: validate
+                show_sql: true
